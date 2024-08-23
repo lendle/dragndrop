@@ -1,9 +1,8 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/core";
-  import { listen, TauriEvent, type Event } from "@tauri-apps/api/event";
+  import { TauriEvent, type Event } from "@tauri-apps/api/event";
   import { getCurrentWebview } from "@tauri-apps/api/webview";
-  import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
-  import { getCurrentWindow, type DragDropEvent } from "@tauri-apps/api/window";
+  import { type DragDropEvent } from "@tauri-apps/api/window";
   import { onMount } from "svelte";
 
   let name = "";
@@ -12,13 +11,6 @@
   let dropZone: HTMLDivElement;
 
   let overDropzone: boolean = false;
-
-  const dragEvents = [
-    TauriEvent.DRAG_DROP,
-    TauriEvent.DRAG_ENTER,
-    TauriEvent.DRAG_LEAVE,
-    TauriEvent.DRAG_OVER,
-  ];
 
   function isOverDropzone(event: Event<DragDropEvent>) {
     if (event.payload.type === "leave") {
